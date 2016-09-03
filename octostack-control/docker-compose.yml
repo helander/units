@@ -121,8 +121,8 @@ services:
   cli:
     image: ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY}/util:${OCTOSTACK_VERSION}
     command: bash -c "sleep infinity"
-    volumes:
-      - ${PWD}:/work
+#    volumes:
+#      - ${PWD}:/work
 #############################################################################
 # artifact_server : HTTP server used for providing operational artifacts,
 #                       such as vm images and heat templates.
