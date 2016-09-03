@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+
+  compute:
+    pid: host
+    image: ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY}/compute:${OCTOSTACK_VERSION}
+    hostname: compute-node
+    privileged: true
+#    security_opt:
+#      - apparmor:/usr/sbin/libvirtd
+    volumes:
+      - /lib/modules:/lib/modules
+      - /dev/kvm:/dev/kvm
+      - /dev/vfio:/dev/vfio
+    environment:
+      - PCI_PASSTHROUGH_WHITELIST
+      - SRIOV_DEVICE_MAPPINGS
+      - OCTONET_ALLOCATE
+      - OCTONET_CLONE
+      - OCTO0_INTERFACE
+      - OCTO1_INTERFACE
+      - OCTO2_INTERFACE
+      - OCTO3_INTERFACE
+      - DOCKER_HOST_IP
+      - DOCKER_HOST
+      - SPICE_HOST_PORT
+      - SPICE_HOST_IP

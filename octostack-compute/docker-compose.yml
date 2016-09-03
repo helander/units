@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+
+  compute:
+    extends:
+      file: ../shared/compute-base.yml
+      service: compute
+    network_mode: host
+    environment:
+      - DOCKER_HOST=${DOCKER_HOST_FIX}
+      - SPICE_HOST_PORT=6082
+      - RABBIT_HOST=${CONTROL_UNIT_HOST}
+      - KEYSTONE_HOST=${CONTROL_UNIT_HOST}
+      - GLANCE_HOST=${CONTROL_UNIT_HOST}
+      - NEUTRON_HOST=${CONTROL_UNIT_HOST}
+      - NOVA_HOST=${CONTROL_UNIT_HOST}
+

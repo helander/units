@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+
+#############################################################################
+# Gluster file system server
+#############################################################################
+  glusterfs:
+    hostname: glnode
+    image: million12/gluster
+    privileged: true
+    command: bash -c "glusterd;mkdir -p /bricks/brick1;gluster volume create octostack_volume glnode:/bricks/brick1 force;gluster volume start octostack_volume;sleep infinity"
+
+#############################################################################
+# Storage node
+#############################################################################
+  storage:
+    hostname: storage-node
+    image: ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY}/storage:${OCTOSTACK_VERSION}
+    privileged: true
+    environment:
+      - DOCKER_HOST_IP
+      - DOCKER_HOST

@@ -1,0 +1,49 @@
+version: '2'
+
+networks:
+  octostackcontrol_default:
+    external: true
+
+services:
+
+  compute-01:
+    hostname: compute-node-01
+    extends:
+      file: ../shared/compute-base.yml
+      service: compute
+    networks:
+      - octostackcontrol_default
+
+
+  compute-02:
+    hostname: compute-node-02
+    extends:
+      file: ../shared/compute-base.yml
+      service: compute
+    command: compute-only
+    networks:
+      - octostackcontrol_default
+
+  compute-03:
+    hostname: compute-node-03
+    extends:
+      file: ../shared/compute-base.yml
+      service: compute
+    command: compute-only
+    networks:
+      - octostackcontrol_default
+
+  storage:
+    extends:
+      file: ../shared/storage-base.yml
+      service: storage
+    networks:
+      - octostackcontrol_default
+
+  glusterfs:
+    extends:
+      file: ../shared/storage-base.yml
+      service: glusterfs
+    networks:
+      - octostackcontrol_default
+
