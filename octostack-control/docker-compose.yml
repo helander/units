@@ -1,10 +1,10 @@
 version: '2'
 
-volumes:
-  octostack-db-store:
-    external: true
-  octostack-artifact-store:
-    external: true
+#volumes:
+#  octostack-db-store:
+#    external: true
+#  octostack-artifact-store:
+#    external: true
 
 
 services:
@@ -31,8 +31,8 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=mysqlpass
     command: --max-connections=2000 --silent
-    volumes:
-      - octostack-db-store:/var/lib/mysql
+#    volumes:
+#      - octostack-db-store:/var/lib/mysql
 #############################################################################
 # Keystone identity server
 #   The "key.stone" additional network alias is due to that tacker's web UI
@@ -130,7 +130,7 @@ services:
   artifact_server:
     image: busybox
     command: sh -c "httpd -f -h /artifacts"
-    volumes:
-      -  octostack-artifact-store:/artifacts
+#    volumes:
+#      -  octostack-artifact-store:/artifacts
 #############################################################################
 
